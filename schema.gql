@@ -1,0 +1,171 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Book {
+  _id: ID!
+  title: String!
+  isbn: String!
+  author: Author!
+}
+
+type Author {
+  _id: ID!
+  name: String!
+  age: Int!
+  books: [Book!]!
+}
+
+type PageInfo {
+  totalDocs: Int!
+  totalPages: Int!
+  page: Int!
+  hasPrevPage: Boolean!
+  hasNextPage: Boolean!
+  limit: Int!
+  prevPage: Int
+  nextPage: Int
+}
+
+type AuthorsPaginated {
+  pageInfo: PageInfo
+  docs: [Author!]
+}
+
+type BooksPaginated {
+  pageInfo: PageInfo
+  docs: [Book!]
+}
+
+type User {
+  _id: ID!
+  email: String!
+  name: String!
+}
+
+type UsersPaginated {
+  pageInfo: PageInfo
+  docs: [User!]
+}
+
+type Product {
+  _id: ID!
+  title: String!
+  price: Float!
+}
+
+type ProductsPaginated {
+  pageInfo: PageInfo
+  docs: [Product!]
+}
+
+type Query {
+  findAllBooks(pageParams: PageParamsInput = {page: 1, limit: 10, sort: "-createdAt"}, filter: BookFilterInput = {}): BooksPaginated!
+  findBookById(input: FindIdInput!): Book!
+  findOneBook(input: BookFilterInput!): Book!
+  findAllAuthors(pageParams: PageParamsInput = {page: 1, limit: 10, sort: "-createdAt"}, filter: AuthorFilterInput = {}): AuthorsPaginated!
+  findAuthorById(input: FindIdInput!): Author!
+  findOneAuthor(input: AuthorFilterInput!): Author!
+  findAllUsers(pageParams: PageParamsInput = {page: 1, limit: 10, sort: "-createdAt"}, filter: UserFilterInput = {}): UsersPaginated!
+  findUserById(input: FindIdInput!): User!
+  findOneUser(input: UserFilterInput!): User!
+  findAllProducts(pageParams: PageParamsInput = {page: 1, limit: 10, sort: "-createdAt"}, filter: ProductFilterInput = {}): ProductsPaginated!
+  findProductById(input: FindIdInput!): Product!
+  findOneProduct(input: ProductFilterInput!): Product!
+}
+
+input PageParamsInput {
+  page: Int = 1
+  limit: Int = 1
+  sort: String = "-createdAt"
+  populate: String = ""
+}
+
+input BookFilterInput {
+  title: String
+  isbn: String
+  author: String
+}
+
+input FindIdInput {
+  _id: ID!
+}
+
+input AuthorFilterInput {
+  name: String
+  age: Int
+}
+
+input UserFilterInput {
+  name: String
+  email: String
+  password: String
+}
+
+input ProductFilterInput {
+  title: String
+  price: Float
+}
+
+type Mutation {
+  createBook(input: CreateBookInput!): Book!
+  updateBook(input: UpdateBookInput!): Book!
+  deleteBook(filter: FindIdInput!): Book!
+  createAuthor(input: CreateAuthorInput!): Author!
+  updateAuthor(input: UpdateAuthorInput!): Author!
+  deleteAuthor(filter: FindIdInput!): Author!
+  createUser(input: CreateUserInput!): User!
+  updateUser(input: UpdateUserInput!): User!
+  deleteUser(filter: FindIdInput!): User!
+  createProduct(input: CreateProductInput!): Product!
+  updateProduct(input: UpdateProductInput!): Product!
+  deleteProduct(filter: FindIdInput!): Product!
+}
+
+input CreateBookInput {
+  title: String!
+  isbn: String!
+  author: String!
+}
+
+input UpdateBookInput {
+  title: String
+  isbn: String
+  author: String
+  _id: ID!
+}
+
+input CreateAuthorInput {
+  name: String!
+  age: Int!
+}
+
+input UpdateAuthorInput {
+  name: String
+  age: Int
+  _id: ID!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  password: String
+  _id: ID!
+}
+
+input CreateProductInput {
+  title: String!
+  price: Float!
+}
+
+input UpdateProductInput {
+  title: String
+  price: Float
+  _id: ID!
+}
